@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `patient` ADD COLUMN `bloodBankID` INTEGER NOT NULL DEFAULT 0;
+
+-- AddForeignKey
+ALTER TABLE `Patient` ADD FOREIGN KEY (`bloodBankID`) REFERENCES `BloodBank`(`ID`) ON DELETE CASCADE ON UPDATE CASCADE;

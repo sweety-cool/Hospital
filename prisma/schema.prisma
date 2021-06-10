@@ -1,0 +1,64 @@
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:sweety@localhost:3306/hospital"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Hospital {
+  ID            Int       @id @default(autoincrement())
+  Name          String
+  Phone         Int
+  Address       String
+  IsolationBeds Int
+  NormalBeds    Int
+  Ventilators   Int
+  Patient       Patient[]
+}
+
+model Patient {
+  ID                 Int              @id @default(autoincrement())
+  Name               String
+  IsEmergency        Boolean          @default(false)
+  Hospital           Hospital         @relation(fields: [hospitalID], references: [ID])
+  Ambulance          AmbulanceService @relation(fields: [ambulanceServiceId], references: [Id])
+  BloodBank          BloodBank        @relation(fields: [bloodBankID], references: [ID])
+  OxygenBank         OxygenBank       @relation(fields: [oxygenBankID], references: [ID])
+  bloodBankID        Int
+  oxygenBankID       Int
+  hospitalID         Int
+  ambulanceServiceId Int
+}
+
+model BloodBank {
+  ID       Int       @id @default(autoincrement())
+  Name     String
+  Incharge String
+  Address  String
+  Patient  Patient[]
+}
+
+model OxygenBank {
+  ID      Int       @id @default(autoincrement())
+  Name    String
+  Phone   Int
+  Address String
+  Patient Patient[]
+}
+
+model AmbulanceService {
+  Id      Int       @id @default(autoincrement())
+  Name    String
+  Phone   Int
+  Address String
+  Patient Patient[]
+}
+
+model MedicalShop {
+  Id      Int    @id @default(autoincrement())
+  Name    String
+  Phone   Int
+  Address String
+}

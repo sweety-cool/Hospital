@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE `BloodBank` (
+    `ID` INTEGER NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(191) NOT NULL,
+    `Incharge` VARCHAR(191) NOT NULL,
+    `Address` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`ID`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
